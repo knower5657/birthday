@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>给你的国庆小惊喜</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: "PingFang SC", "Microsoft YaHei", sans-serif;
+    background: linear-gradient(135deg, #e3f2fd, #f0f8ff);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+  }
+  .lock-screen, .content {
+    background: #fff;
+    border-radius: 20px;
+    padding: 40px 30px;
+    max-width: 600px;
+    width: 100%;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+    text-align: center;
+  }
+  .lock-screen h1 { font-size: 22px; color: #1976d2; margin-bottom: 10px; }
+  .lock-screen p { color: #888; font-size: 14px; margin-bottom: 25px; }
+  input[type="password"] {
+    width: 100%;
+    padding: 14px;
+    border: 2px solid #bbdefb;
+    border-radius: 12px;
+    font-size: 16px;
+    text-align: center;
+    outline: none;
+    transition: border 0.3s;
+  }
+  input[type="password"]:focus { border-color: #1976d2; }
+  button {
+    margin-top: 15px;
+    width: 100%;
+    padding: 14px;
+    background: #1976d2;
+    color: #fff;
+    border: none;
+    border-radius: 12px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background 0.3s;
+  }
+  button:hover { background: #1565c0; }
+  .error { color: #e03131; font-size: 13px; margin-top: 10px; height: 18px; }
+  .content { display: none; text-align: left; }
+  .content h1 {
+    font-size: 24px;
+    color: #1976d2;
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  .content .letter {
+    font-size: 16px;
+    line-height: 1.9;
+    color: #444;
+    white-space: pre-wrap;
+    margin-bottom: 25px;
+  }
+</style>
+</head>
+<body>
+
+<!-- 密码锁屏 -->
+<div class="lock-screen" id="lockScreen">
+  <h1>🎒 这是一份给你的小惊喜</h1>
+  <p>输入神秘密码（6位数字）</p>
+  <input type="password" id="pwdInput" placeholder="请输入密码" onkeydown="if(event.key==='Enter')checkPwd()">
+  <button onclick="checkPwd()">打开</button>
+  <div class="error" id="errorMsg"></div>
+</div>
+
+<!-- 正文内容（密码正确后显示） -->
+<div class="content" id="content">
+  <h1>国庆快乐，欢迎回上饶 🎉</h1>
+
+  <div class="letter">
+亲爱的10米奶油：
+
+首先恭迎你回上饶，短短三天再次回到家乡感受如何呢？应该和我抵达时一样颇有感触吧
+
+虽然这次没有见面，但我想以这种方式和你说几句话。
+
+前几天我还在担心马上就二十岁了，却没有成年人的稳重，依旧沉迷小学六年级爱玩的游戏。
+以前我们上学的时候，总觉得时间很长，现在才知道，能常见面其实是一件很奢侈的事。
+
+回想起高中生涯，我要特别感谢你天天带相机来学校，给我们拍了好多照片和视频，以至于我在dy上刷到关于买个相机在学校记录生活的帖子都毫不犹豫地持肯定态度。和你做同桌是一件很棒的事情，你有很强的人格魅力，是一个很好玩很有趣的人，在未来一定会碰到许多志同道合的朋友。
+
+最后想送你一句话：如果日子细水长流，那不说永远，只说珍惜。
+希望你一直热爱生活，保持那颗记录生活的心。
+
+国庆快乐 啾咪~
+
+  </div>
+</div>
+
+<script>
+  // ====== 在这里改密码 ======
+  const CORRECT_PWD = "080302";
+
+  function checkPwd() {
+    const input = document.getElementById("pwdInput").value;
+    const error = document.getElementById("errorMsg");
+
+    if (input === CORRECT_PWD) {
+      document.getElementById("lockScreen").style.display = "none";
+      document.getElementById("content").style.display = "block";
+    } else {
+      error.textContent = "密码不对哦，再想想～";
+      document.getElementById("pwdInput").value = "";
+    }
+  }
+</script>
+
+</body>
+</html>
