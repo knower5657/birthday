@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>给你的生日惊喜</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: "PingFang SC", "Microsoft YaHei", sans-serif;
+    background: linear-gradient(135deg, #ffe0e9, #fff5e6);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+  }
+  .lock-screen, .content {
+    background: #fff;
+    border-radius: 20px;
+    padding: 40px 30px;
+    max-width: 600px;
+    width: 100%;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+    text-align: center;
+  }
+  .lock-screen h1 { font-size: 22px; color: #d6336c; margin-bottom: 10px; }
+  .lock-screen p { color: #888; font-size: 14px; margin-bottom: 25px; }
+  input[type="password"] {
+    width: 100%;
+    padding: 14px;
+    border: 2px solid #ffd6e0;
+    border-radius: 12px;
+    font-size: 16px;
+    text-align: center;
+    outline: none;
+    transition: border 0.3s;
+  }
+  input[type="password"]:focus { border-color: #d6336c; }
+  button {
+    margin-top: 15px;
+    width: 100%;
+    padding: 14px;
+    background: #d6336c;
+    color: #fff;
+    border: none;
+    border-radius: 12px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background 0.3s;
+  }
+  button:hover { background: #b02a56; }
+  .error { color: #e03131; font-size: 13px; margin-top: 10px; height: 18px; }
+  .content { display: none; text-align: left; }
+  .content h1 {
+    font-size: 24px;
+    color: #d6336c;
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  .content .letter {
+    font-size: 16px;
+    line-height: 1.9;
+    color: #444;
+    white-space: pre-wrap;
+    margin-bottom: 25px;
+  }
+  .content img {
+    width: 100%;
+    border-radius: 12px;
+    margin-bottom: 15px;
+  }
+  .content .photos { margin-top: 10px; }
+</style>
+</head>
+<body>
+
+<!-- 密码锁屏 -->
+<div class="lock-screen" id="lockScreen">
+  <h1>🎂 这是一份给你的礼物</h1>
+  <p>输入我们之间的专属密码（6位数字）</p>
+  <input type="password" id="pwdInput" placeholder="请输入密码" onkeydown="if(event.key==='Enter')checkPwd()">
+  <button onclick="checkPwd()">打开</button>
+  <div class="error" id="errorMsg"></div>
+</div>
+
+<!-- 正文内容（密码正确后显示） -->
+<div class="content" id="content">
+  <h1>生日快乐 🎉</h1>
+
+  <div class="letter">
+亲爱的下雨天：
+  现在是9月30号，离10月20号还有二十天。
+ 
+我提前这么久写这封信，不是因为我闲，是因为我怕到了那天，反而不知道该说什么。
+ 
+看到你前几天朋友圈发的高中小物件。忽然想起我们那时候的事。想起我们一起制作纸片小人，也想起班主任在讲台上讲那些不着边际的话，我们在下面一笔一笔地记——几点几分讲到哪，箭头一拉，又拐到下一个地方，像一张越画越远的思维导图。
+ 
+那时候没觉得这些事有什么特别。现在想起来，才发现我记住的其实不是那些画、那些箭头，是我和你坐在一起。
+ 
+后来我们去了不同的地方。你在赣州，我在南昌。日子还是照常过，只是我看到桂花就会想起你，闻到樟树的味道就想到你很喜欢。
+ 
+所以我想，与其等到10月20号那天再说，不如现在就写下来。
+ 
+我想送给你一句话：
+ 
+如果日子细水长流，我们不说永远，只说珍惜。
+ 
+珍惜我们从前一起走过的那几年，也珍惜现在这种不常见面、却依然在的关系。 
+
+祝你生日快乐，愿你每天都开心。
+
+到那天，我还会说一次----不是走过场，是因为这句话本来就是说给你的。
+  </div>
+
+  <div class="photos">
+    <!-- 照片：把 src 换成你自己的图片路径或链接 -->
+    <img src="photo1.jpg" alt="我们的照片1">
+    <img src="photo2.jpg" alt="我们的照片2">
+    <img src="photo3.jpg" alt="我们的照片3">
+  </div>
+</div>
+
+<script>
+  // ====== 在这里改密码 ======
+  const CORRECT_PWD = "081020";
+
+  function checkPwd() {
+    const input = document.getElementById("pwdInput").value;
+    const error = document.getElementById("errorMsg");
+
+    if (input === CORRECT_PWD) {
+      document.getElementById("lockScreen").style.display = "none";
+      document.getElementById("content").style.display = "block";
+    } else {
+      error.textContent = "密码不对哦，再想想～";
+      document.getElementById("pwdInput").value = "";
+    }
+  }
+</script>
+
+</body>
+</html>
